@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/08 19:07:45 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/08 19:15:38 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	main(void)
 	int	file_no;
 
 	file_no = open("lulala.txt", O_RDONLY);
-	printf("call 1: %s\n", get_next_line(file_no));
-	printf("call 2: %s\n", get_next_line(file_no));
-	printf("call 3: %s\n", get_next_line(file_no));
-	printf("call 4: %s\n", get_next_line(file_no));
-	printf("call 5: %s\n", get_next_line(file_no));
-	printf("call 6: %s\n", get_next_line(file_no));
-	printf("call 7: %s\n", get_next_line(file_no));
+	printf("call 1:\n%s\n\n", get_next_line(file_no));
+	printf("call 2:\n%s\n\n", get_next_line(file_no));
+	printf("call 3:\n%s\n\n", get_next_line(file_no));
+	printf("call 4:\n%s\n\n", get_next_line(file_no));
+	printf("call 5:\n%s\n\n", get_next_line(file_no));
+	printf("call 6:\n%s\n\n", get_next_line(file_no));
+	printf("call 7:\n%s\n\n", get_next_line(file_no));
 	return (0);
 }
