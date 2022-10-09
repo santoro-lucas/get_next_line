@@ -6,23 +6,32 @@
 /*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/08 19:15:38 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/09 16:29:36 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "get_next_line.h"
 
 // ssize_t	read(int fd, void *buf, size_t count)
 // > reads count bytes from fd pointed file into *buf
 
 char *get_next_line (int fd)
 {
-	char		*bufa;
+	char	*next_line;
+	char	*buffer;
+	int		line_len;
 
-	bufa = malloc(BUFFER_SIZE);
-	read(fd, bufa, BUFFER_SIZE);
-	return (bufa);
+	next_line = malloc(1024);
+	buffer = malloc(BUFFER_SIZE);
+	read(fd, buffer, BUFFER_SIZE);
+	ft_strlcpy(next_line, buffer, ft_strlen(buffer) + 1);
+	while (!ft_strchr(buffer, '\n'))
+	{
+		read(fd, buffer, BUFFER_SIZE);
+		line_len = ft_strlen(next_line) + ft_strlen(buffer) + 1;
+		ft_strlcat(next_line, buffer, line_len);
+	}
+	return (next_line);
 }
 
 #include <fcntl.h>
@@ -30,14 +39,11 @@ char *get_next_line (int fd)
 int	main(void)
 {
 	int	file_no;
+	int	i;
 
+	i = 0;
 	file_no = open("lulala.txt", O_RDONLY);
-	printf("call 1:\n%s\n\n", get_next_line(file_no));
-	printf("call 2:\n%s\n\n", get_next_line(file_no));
-	printf("call 3:\n%s\n\n", get_next_line(file_no));
-	printf("call 4:\n%s\n\n", get_next_line(file_no));
-	printf("call 5:\n%s\n\n", get_next_line(file_no));
-	printf("call 6:\n%s\n\n", get_next_line(file_no));
-	printf("call 7:\n%s\n\n", get_next_line(file_no));
+	while (printf("%s", get_next_line(file_no)))
+		printf(" <<< line %i: \n", ++i);
 	return (0);
 }
