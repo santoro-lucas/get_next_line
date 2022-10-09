@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/09 16:29:36 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/09 16:38:37 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // ssize_t	read(int fd, void *buf, size_t count)
 // > reads count bytes from fd pointed file into *buf
 
-char *get_next_line (int fd)
+char	*get_next_line(int fd)
 {
 	char	*next_line;
 	char	*buffer;
