@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/15 16:23:35 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/15 17:21:46 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	int			line_len;
 
-	next_line = malloc(1024);
+	next_line = malloc(2048);
 	buffer = malloc(BUFFER_SIZE + 1);
 	read(fd, buffer, BUFFER_SIZE);
 	gnl_strlcpy(next_line, buffer, gnl_strlen(buffer) + 1);
