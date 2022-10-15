@@ -1,5 +1,7 @@
 # GNL | Tests gnl defining buffer size
 gnl()
 {
-	cc -Wall -Wextra -Werror test.c get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=$1 && ./a.out && rm a.out
+	cc -Wall -Wextra -Werror test.c get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=$1
+	./a.out
+	rm a.out
 }
