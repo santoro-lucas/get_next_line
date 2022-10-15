@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:52:25 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/15 14:52:26 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/15 16:40:58 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@
 
 int	main(void)
 {
-	int	file_no;
+	int	test_file;
 	int	i;
+	char *line;
 
-	i = 0;
-	file_no = open("test_text.txt", O_RDONLY);
-	while (printf("%s", get_next_line(file_no)))
-		printf(" <<< line %i: \n", ++i);
+	i = 1;
+	test_file = open("text.txt", O_RDONLY);
+	while (i < 6)
+	{
+		line = get_next_line(test_file);
+		printf("%s <<< line %i: \n", line, i++);	
+	}
+	free(line);
 	return (0);
 }

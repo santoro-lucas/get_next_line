@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:22:00 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/15 14:47:33 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/15 16:44:08 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*gnl_strchr(const char *s, int c)
 	while ((*s != (char) c) && (*s != '\0'))
 		s++;
 	if (*s == (char) c)
-		return ((char *) s);
+		return ((char *) s + 1);
 	else
 		return (NULL);
 }
