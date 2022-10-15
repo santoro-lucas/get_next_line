@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
+/*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/10 16:13:56 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:43:04 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ char	*get_next_line(int fd)
 	next_line = malloc(1024);
 	buffer = malloc(BUFFER_SIZE);
 	read(fd, buffer, BUFFER_SIZE);
-	ft_strlcpy(next_line, buffer, ft_strlen(buffer) + 1);
-	while (!ft_strchr(buffer, '\n'))
+	gnl_strlcpy(next_line, buffer, gnl_strlen(buffer) + 1);
+	while (!gnl_strchr(buffer, '\n'))
 	{
 		read(fd, buffer, BUFFER_SIZE);
-		line_len = ft_strlen(next_line) + ft_strlen(buffer) + 1;
-		ft_strlcat(next_line, buffer, line_len);
+		line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
+		gnl_strlcat(next_line, buffer, line_len);
 	}
 	return (next_line);
 }
