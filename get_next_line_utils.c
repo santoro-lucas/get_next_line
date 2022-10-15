@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:22:00 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/09 16:26:33 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/13 21:27:12 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	src_size = ft_strlen(src);
 	if (size == 0)
 		return (src_size);
-	while (size-- > 1 && *src != '\0')
+	while (size-- > 1 && *src != '\0' && *src != '\n')
 		*dst++ = *src++;
 	*dst = '\0';
 	return (src_size);

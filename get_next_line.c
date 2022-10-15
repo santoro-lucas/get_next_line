@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/09 16:38:37 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:13:56 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(void)
 	int	i;
 
 	i = 0;
-	file_no = open("lulala.txt", O_RDONLY);
+	file_no = open("test_text.txt", O_RDONLY);
 	while (printf("%s", get_next_line(file_no)))
 		printf(" <<< line %i: \n", ++i);
 	return (0);
