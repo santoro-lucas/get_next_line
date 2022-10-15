@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:22:00 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/15 14:34:36 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:47:33 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,19 @@ char	*gnl_strchr(const char *s, int c)
 		return ((char *) s);
 	else
 		return (NULL);
+}
+
+void	*gnl_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	while (i < n)
+	{
+		*((char *)(dest + i)) = *((char *)(src + i));
+		i++;
+	}
+	return (dest);
 }

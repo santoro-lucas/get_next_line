@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/15 14:43:04 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:52:15 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,4 @@ char	*get_next_line(int fd)
 		gnl_strlcat(next_line, buffer, line_len);
 	}
 	return (next_line);
-}
-
-#include <fcntl.h>
-#include <stdio.h>
-int	main(void)
-{
-	int	file_no;
-	int	i;
-
-	i = 0;
-	file_no = open("test_text.txt", O_RDONLY);
-	while (printf("%s", get_next_line(file_no)))
-		printf(" <<< line %i: \n", ++i);
-	return (0);
 }
