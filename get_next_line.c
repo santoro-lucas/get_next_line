@@ -54,13 +54,6 @@ char	*get_next_line(int fd)
 		read(fd, buffer, BUFFER_SIZE);
 		line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
 	}
-	
-	line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
-	gnl_strlcat(next_line, buffer, line_len);
-	read(fd, buffer, BUFFER_SIZE);
-	
-	
-	if (gnl_strchr(buffer, '\0'))
-		free(buffer);
+	free(buffer);
 	return (next_line);
 }
