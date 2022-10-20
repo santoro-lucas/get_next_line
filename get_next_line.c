@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/19 21:16:33 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:58:52 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@
 char	*get_next_line(int fd)
 {
 	char		*next_line;
-	char		*buffer;
-	static char	*rest;
+	static char	*buffer;
 	int			line_len;
 	int			was_read;
 
 	next_line = malloc(4096);
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (rest)
-		gnl_strlcat(buffer, rest, BUFFER_SIZE);
+	if (!buffer)
+		buffer = malloc(BUFFER_SIZE + 1);
 	while (!gnl_strchr(buffer, '\n'))
 	{
 		gnl_strlcat(next_line, buffer, line_len);
@@ -37,10 +35,8 @@ char	*get_next_line(int fd)
 	}
 	line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
 	gnl_strlcat(next_line, buffer, line_len);
-	rest = malloc(BUFFER_SIZE + 1);
-	gnl_strlcat(rest, gnl_strchr(buffer, '\n') + 1, BUFFER_SIZE);
-	if (was_read < BUFFER_SIZE)
-		free(rest);
-	free(buffer);
+	gnl_strlcpy(buffer, gnl_strchr(buffer, '\n') + 1, BUFFER_SIZE);
+	if (was_read == 0)
+		free(buffer);
 	return (next_line);
 }

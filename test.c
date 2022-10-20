@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:52:25 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/17 18:37:18 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:01:02 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 	{
 		line = get_next_line(test_file);
 		printf("%s <<< line %i: \n", line, i++);
+		free(line);
 	}
-	free(line);
 	return (0);
 }
