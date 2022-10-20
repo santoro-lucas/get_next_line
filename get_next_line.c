@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/20 18:58:52 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:07:57 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ char	*get_next_line(int fd)
 		was_read = read(fd, buffer, BUFFER_SIZE);
 		line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
 	}
-	line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
-	gnl_strlcat(next_line, buffer, line_len);
-	gnl_strlcpy(buffer, gnl_strchr(buffer, '\n') + 1, BUFFER_SIZE);
-	if (was_read == 0)
-		free(buffer);
+	if (was_read)
+	{
+		line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
+		gnl_strlcat(next_line, buffer, line_len);
+		gnl_strlcpy(buffer, gnl_strchr(buffer, '\n') + 1, BUFFER_SIZE);
+	}
+	else
+		free(buffer);		
 	return (next_line);
 }
