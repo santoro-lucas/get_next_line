@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/20 19:07:57 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:33:39 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ char	*get_next_line(int fd)
 
 	next_line = malloc(4096);
 	if (!buffer)
-		buffer = malloc(BUFFER_SIZE + 1);
+		buffer = malloc(BUFFER_SIZE);
 	while (!gnl_strchr(buffer, '\n'))
 	{
 		gnl_strlcat(next_line, buffer, line_len);
 		was_read = read(fd, buffer, BUFFER_SIZE);
 		line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
 	}
-	if (was_read)
+	line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
+	gnl_strlcat(next_line, buffer, line_len);
+	gnl_strlcpy(buffer, gnl_strchr(buffer, '\n') + 1, BUFFER_SIZE);
+	if (was_read < BUFFER_SIZE) // Melhorar esta condição
 	{
-		line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
-		gnl_strlcat(next_line, buffer, line_len);
-		gnl_strlcpy(buffer, gnl_strchr(buffer, '\n') + 1, BUFFER_SIZE);
+		free(buffer);
+		printf("freed buffer");
 	}
-	else
-		free(buffer);		
 	return (next_line);
 }
