@@ -26,7 +26,7 @@ int	main(void)
 	{
 		line = get_next_line(test_file);
 		printf("%s <<< line %i: \n", line, i++);
-		free(line);
 	}
+	free(line);
 	return (0);
 }

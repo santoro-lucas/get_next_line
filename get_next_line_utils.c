@@ -45,8 +45,11 @@ size_t	gnl_strlen(const char *str)
 	int	len;
 
 	len = 0;
-	while (*str++ != '\0')
+	while (*str != '\0' && *str != '\n')
+	{
+		str++;
 		len++;
+	}
 	return (len);
 }
 
