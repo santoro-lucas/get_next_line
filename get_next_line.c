@@ -15,30 +15,56 @@
 // ssize_t	read(int fd, void *buf, size_t count)
 // > reads count bytes from fd pointed file into *buf
 #include <stdio.h>
+// fd inválido
+// arquivo vazio
+// 
+
+void	buffer_realign(char *str, int size)
+{
+	char	*tmp;
+
+	tmp = str;
+	while (size && *tmp != '\n')
+	{
+		size--;
+		tmp++;
+	}
+	if (size == 0)
+		*str = '\0';
+	else
+		tmp++;
+	while (size)
+	{
+		size--;
+		*str++ = *tmp++;
+	}
+}
 
 char	*get_next_line(int fd)
 {
 	char		*next_line;
-	static char	*buffer;
+	static char	buffer[BUFFER_SIZE];
 	int			line_len;
-	int			was_read;
+	char		*temp;
 
-	next_line = malloc(4096);
-	if (!buffer)
-		buffer = malloc(BUFFER_SIZE);
-	while (!gnl_strchr(buffer, '\n'))
+	if (!gnl_check(fd))
+		return (NULL);
+	line_len = 1;
+	next_line = NULL;
+	while (!gnl_strchr(next_line, '\n'))
 	{
+		temp = next_line;
+		if (*buffer == '\0' && read(fd, buffer, BUFFER_SIZE) == 0)
+		{
+			free(temp);
+			break;
+		}
+		line_len += gnl_strlen(buffer);
+		next_line = malloc(line_len);
+		gnl_strlcpy(next_line, temp, line_len);
 		gnl_strlcat(next_line, buffer, line_len);
-		was_read = read(fd, buffer, BUFFER_SIZE);
-		line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
-	}
-	line_len = gnl_strlen(next_line) + gnl_strlen(buffer) + 1;
-	gnl_strlcat(next_line, buffer, line_len);
-	gnl_strlcpy(buffer, gnl_strchr(buffer, '\n') + 1, BUFFER_SIZE);
-	if (was_read < BUFFER_SIZE) // Melhorar esta condição
-	{
-		free(buffer);
-		printf("freed buffer");
+		free(temp);
+		buffer_realign(buffer, BUFFER_SIZE);
 	}
 	return (next_line);
 }

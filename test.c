@@ -24,9 +24,10 @@ int	main(void)
 	test_file = open("text.txt", O_RDONLY);
 	while (i <= 5)
 	{
+		line = NULL;
 		line = get_next_line(test_file);
-		printf("%s <<< line %i: \n", line, i++);
-		free(line);
+		printf("line %i: %s", i++, line);
 	}
+	// free(line);
 	return (0);
 }

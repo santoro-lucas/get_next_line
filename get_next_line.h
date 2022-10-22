@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-size_t	gnl_linelen(const char *str);
+int	    gnl_check(int fd);
 void	*gnl_memcpy(void *dest, const void *src, size_t n);
 char	*get_next_line(int fd);
 size_t	gnl_strlcpy(char *dst, const char *src, size_t size);

@@ -16,11 +16,15 @@ size_t	gnl_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	src_size;
 
+	if (!src || !dst)
+		return (0);
 	src_size = gnl_strlen(src);
 	if (size == 0)
 		return (src_size);
-	while (size-- > 1 && *src != '\0' && *src != '\n')
+	while (size-- > 1 && *src != '\n')
 		*dst++ = *src++;
+	if (*src == '\n')
+		*dst++ = '\n';
 	*dst = '\0';
 	return (src_size);
 }
@@ -30,6 +34,8 @@ size_t	gnl_strlcat(char *dst, const char *src, size_t size)
 	size_t	dst_size;
 	size_t	src_size;
 
+	if (!src || !dst)
+		return (0);
 	dst_size = gnl_strlen(dst);
 	src_size = gnl_strlen(src);
 	if (size <= dst_size)
@@ -45,8 +51,10 @@ size_t	gnl_strlen(const char *str)
 	int	len;
 
 	len = 0;
-	while (*str != '\0' && *str != '\n')
+	while (*str != '\0')
 	{
+		if (*str == '\n')
+			return (len + 1);
 		str++;
 		len++;
 	}
@@ -55,10 +63,22 @@ size_t	gnl_strlen(const char *str)
 
 char	*gnl_strchr(const char *s, int c)
 {
+	if (s == NULL)
+		return (NULL);
 	while ((*s != (char) c) && (*s != '\0'))
 		s++;
 	if (*s == (char) c)
 		return ((char *) s);
 	else
 		return (NULL);
+}
+
+int	gnl_check(int fd)
+{
+	if (fd < 0) // fd invalido
+		return (0);
+	// else if ()// outras merda
+	else
+		return (1);
+
 }
