@@ -57,7 +57,7 @@ char	*get_next_line(int fd)
 		if (*buffer == '\0' && read(fd, buffer, BUFFER_SIZE) == 0)
 		{
 			free(temp);
-			break;
+			break ;
 		}
 		line_len += gnl_strlen(buffer);
 		next_line = malloc(line_len);

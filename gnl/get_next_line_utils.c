@@ -75,10 +75,8 @@ char	*gnl_strchr(const char *s, int c)
 
 int	gnl_check(int fd)
 {
-	if (fd < 0) // fd invalido
+	if (fd < 0)
 		return (0);
-	// else if ()// outras merda
 	else
 		return (1);
-
 }
