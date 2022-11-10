@@ -12,7 +12,7 @@
 
 #include <fcntl.h>
 #include <stdio.h>
-#include "gnl/get_next_line.h"
+#include "../get_next_line.h"
 
 int	main(void)
 {
@@ -21,7 +21,7 @@ int	main(void)
 	char	*line;
 
 	i = 1;
-	test_file = open("text.txt", O_RDONLY);
+	test_file = open("aux/text.txt", O_RDONLY);
 	while (i <= 5)
 	{
 		line = NULL;
