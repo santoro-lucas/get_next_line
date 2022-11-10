@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+void	buffer_realign(char *str, int size);
 int		gnl_check(int fd);
 void	*gnl_memcpy(void *dest, const void *src, size_t n);
 char	*get_next_line(int fd);

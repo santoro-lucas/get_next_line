@@ -73,10 +73,23 @@ char	*gnl_strchr(const char *s, int c)
 		return (NULL);
 }
 
-int	gnl_check(int fd)
+void	buffer_realign(char *str, int size)
 {
-	if (fd < 0)
-		return (0);
+	char	*tmp;
+
+	tmp = str;
+	while (size && *tmp != '\n')
+	{
+		size--;
+		tmp++;
+	}
+	if (size == 0)
+		*str = '\0';
 	else
-		return (1);
+		tmp++;
+	while (size)
+	{
+		size--;
+		*str++ = *tmp++;
+	}
 }

@@ -19,25 +19,12 @@
 // arquivo vazio
 // 
 
-void	buffer_realign(char *str, int size)
+int	gnl_check(int fd)
 {
-	char	*tmp;
-
-	tmp = str;
-	while (size && *tmp != '\n')
-	{
-		size--;
-		tmp++;
-	}
-	if (size == 0)
-		*str = '\0';
+	if (fd < 0)
+		return (0);
 	else
-		tmp++;
-	while (size)
-	{
-		size--;
-		*str++ = *tmp++;
-	}
+		return (1);
 }
 
 char	*get_next_line(int fd)
