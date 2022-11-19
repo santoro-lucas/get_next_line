@@ -26,7 +26,7 @@ int	main(void)
 	{
 		line = NULL;
 		line = get_next_line(test_file);
-		printf("\nline %i: %s", i++, line);
+		printf("line %i: %s", i++, line);
 	}
 	free(line);
 	return (0);

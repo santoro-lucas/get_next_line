@@ -21,7 +21,7 @@
 
 int	gnl_check(int fd)
 {
-	if (fd < 0)
+	if (fd < 0 || read(fd, 0, 0) < 0)
 		return (0);
 	else
 		return (1);
@@ -32,7 +32,7 @@ char	*get_next_line(int fd)
 	char		*next_line;
 	static char	buffer[BUFFER_SIZE];
 	int			line_len;
-	char		*temp;
+	char		*temp_line;
 
 	if (!gnl_check(fd))
 		return (NULL);
@@ -40,35 +40,20 @@ char	*get_next_line(int fd)
 	next_line = NULL;
 	while (!gnl_strchr(next_line, '\n'))
 	{
-		temp = next_line;
+		temp_line = next_line;
 		if (*buffer == '\0' && read(fd, buffer, BUFFER_SIZE) == 0)
 		{
-			free(temp);
+			free(temp_line);
 			break ;
 		}
-		printf("buffer: %s\t", buffer);
+		printf("buffer: %s\t", buffer); // apenas para teste
 		line_len += gnl_strlen(buffer);
 		next_line = malloc(line_len);
-		gnl_strlcpy(next_line, temp, line_len); // primeira rodada não faz nada
-		free(temp);
+		gnl_strlcpy(next_line, temp_line, line_len);
+		free(temp_line);
 		gnl_strlcat(next_line, buffer, line_len);
 		buffer_realign(buffer, BUFFER_SIZE);
 	}
 	return (next_line);
 }
 
-// char	*get_next_line(int fd)
-// {
-// 	char		*next_line;
-// 	static char	buffer[BUFFER_SIZE];
-// 	int			line_len;
-// 	char		*temp;
-
-// 	while (!gnl_strchr(next_line, '\n'))
-// 	{
-// 		if(*buffer == '\0') // Incerto se isso funciona. A idéia que a leitura só deve acontecer se não houver nada no buffer
-// 			read(fd, buffer, BUFFER_SIZE);
-		
-// 	}
-// 	return (next_line);
-// }
