@@ -46,12 +46,29 @@ char	*get_next_line(int fd)
 			free(temp);
 			break ;
 		}
+		printf("buffer: %s\t", buffer);
 		line_len += gnl_strlen(buffer);
 		next_line = malloc(line_len);
-		gnl_strlcpy(next_line, temp, line_len);
-		gnl_strlcat(next_line, buffer, line_len);
+		gnl_strlcpy(next_line, temp, line_len); // primeira rodada não faz nada
 		free(temp);
+		gnl_strlcat(next_line, buffer, line_len);
 		buffer_realign(buffer, BUFFER_SIZE);
 	}
 	return (next_line);
 }
+
+// char	*get_next_line(int fd)
+// {
+// 	char		*next_line;
+// 	static char	buffer[BUFFER_SIZE];
+// 	int			line_len;
+// 	char		*temp;
+
+// 	while (!gnl_strchr(next_line, '\n'))
+// 	{
+// 		if(*buffer == '\0') // Incerto se isso funciona. A idéia que a leitura só deve acontecer se não houver nada no buffer
+// 			read(fd, buffer, BUFFER_SIZE);
+		
+// 	}
+// 	return (next_line);
+// }

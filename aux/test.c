@@ -21,13 +21,13 @@ int	main(void)
 	char	*line;
 
 	i = 1;
-	test_file = open("aux/text.txt", O_RDONLY);
-	while (i <= 5)
+	test_file = open("aux/text2.txt", O_RDONLY);
+	while (i <= 12)
 	{
 		line = NULL;
 		line = get_next_line(test_file);
-		printf("line %i: %s", i++, line);
-		free(line);
+		printf("\nline %i: %s", i++, line);
 	}
+	free(line);
 	return (0);
 }

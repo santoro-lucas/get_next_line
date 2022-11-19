@@ -73,23 +73,36 @@ char	*gnl_strchr(const char *s, int c)
 		return (NULL);
 }
 
-void	buffer_realign(char *str, int size)
+void	buffer_realign(char *buf, int size)
 {
 	char	*tmp;
 
-	tmp = str;
+	tmp = buf;
 	while (size && *tmp != '\n')
 	{
 		size--;
 		tmp++;
 	}
 	if (size == 0)
-		*str = '\0';
+		*buf = '\0';
 	else
 		tmp++;
 	while (size)
 	{
 		size--;
-		*str++ = *tmp++;
+		*buf++ = *tmp++;
 	}
+}
+
+char	*copy_till(char *dst, char *src)
+{
+	while (*src != '\n' && *src != '\0')
+	{
+		*dst = *src;
+		dst++;
+		src++;
+	}
+	*dst = *src;
+	src++;
+	return (src);
 }
