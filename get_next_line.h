@@ -15,7 +15,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-void	buffer_realign(char *str/*, int size*/);
+/* ************************************************************************** */
+/* SEÇÃO DE INCLUDES QUE TEM QUE APAGAR                                       */
+
+# include <fcntl.h>
+# include <stdio.h>
+
+/* ************************************************************************** */
+
+void	buffer_realign(char *str);
 int		gnl_check(int fd);
 void	*gnl_memcpy(void *dest, const void *src, size_t n);
 char	*get_next_line(int fd);

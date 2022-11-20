@@ -73,34 +73,21 @@ char	*gnl_strchr(const char *s, int c)
 
 void	buffer_realign(char *buf)
 {
-		char	*tmp;
-		int		len;
-		int		i;
+	char	*tmp;
+	int		len;
+	int		i;
 
-		tmp = buf;
-		len = 0;
-		i = 0;
-		while (*(tmp + len))
-				len ++;
-		while (*tmp && *tmp != '\n')
-				tmp ++;
-		if (*tmp == '\n')
-				tmp ++;
-		while (tmp != (buf + len))
-				buf[i++] = *tmp++;
-		while (i <= len)
-				buf[i++] = '\0';
-}
-
-char	*copy_until(char *dst, char *src)
-{
-	while (*src != '\n' && *src != '\0')
-	{
-		*dst = *src;
-		dst++;
-		src++;
-	}
-	*dst = *src;
-	src++;
-	return (src);
+	tmp = buf;
+	len = 0;
+	i = 0;
+	while (*(tmp + len))
+			len ++;
+	while (*tmp && *tmp != '\n')
+			tmp ++;
+	if (*tmp == '\n')
+			tmp ++;
+	while (tmp != (buf + len))
+			buf[i++] = *tmp++;
+	while (i <= len)
+			buf[i++] = '\0';
 }

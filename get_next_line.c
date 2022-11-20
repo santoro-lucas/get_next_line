@@ -12,13 +12,6 @@
 
 #include "get_next_line.h"
 
-// ssize_t	read(int fd, void *buf, size_t count)
-// > reads count bytes from fd pointed file into *buf
-#include <stdio.h>
-// fd inválido
-// arquivo vazio
-// 
-
 int	gnl_check(int fd)
 {
 	if (fd < 0 || read(fd, 0, 0) < 0)
@@ -27,10 +20,13 @@ int	gnl_check(int fd)
 		return (1);
 }
 
+// ssize_t	read(int fd, void *buf, size_t count)
+// > reads count bytes from fd pointed file into *buf
+
 char	*get_next_line(int fd)
 {
 	char		*next_line;
-	static char	buffer[BUFFER_SIZE];
+	static char	buffer[BUFFER_SIZE + 1];
 	int			line_len;
 	char		*temp_line;
 
