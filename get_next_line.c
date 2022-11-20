@@ -46,14 +46,12 @@ char	*get_next_line(int fd)
 			free(temp_line);
 			break ;
 		}
-		printf("buffer: %s\t", buffer); // apenas para teste
-		line_len += gnl_strlen(buffer);
+		line_len += gnl_len(buffer);
 		next_line = malloc(line_len);
 		gnl_strlcpy(next_line, temp_line, line_len);
 		free(temp_line);
 		gnl_strlcat(next_line, buffer, line_len);
-		buffer_realign(buffer, BUFFER_SIZE);
+		buffer_realign(buffer);
 	}
 	return (next_line);
 }
-

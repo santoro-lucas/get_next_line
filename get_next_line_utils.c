@@ -18,13 +18,11 @@ size_t	gnl_strlcpy(char *dst, const char *src, size_t size)
 
 	if (!src || !dst)
 		return (0);
-	src_size = gnl_strlen(src);
+	src_size = gnl_len(src);
 	if (size == 0)
 		return (src_size);
-	while (size-- > 1 && *src != '\n')
+	while (size-- > 1)
 		*dst++ = *src++;
-	if (*src == '\n')
-		*dst++ = '\n';
 	*dst = '\0';
 	return (src_size);
 }
@@ -36,8 +34,8 @@ size_t	gnl_strlcat(char *dst, const char *src, size_t size)
 
 	if (!src || !dst)
 		return (0);
-	dst_size = gnl_strlen(dst);
-	src_size = gnl_strlen(src);
+	dst_size = gnl_len(dst);
+	src_size = gnl_len(src);
 	if (size <= dst_size)
 		return (size + src_size);
 	dst += dst_size;
@@ -46,13 +44,18 @@ size_t	gnl_strlcat(char *dst, const char *src, size_t size)
 	return (dst_size + src_size);
 }
 
-size_t	gnl_strlen(const char *str)
+size_t	gnl_len(const char *str)
 {
 	int	len;
 
 	len = 0;
-	while (*str++ != '\0')
+	while (*str != '\0')
+	{
+		if (*str == '\n')
+			return (len + 1);
+		str++;
 		len++;
+	}
 	return (len);
 }
 
@@ -68,28 +71,28 @@ char	*gnl_strchr(const char *s, int c)
 		return (NULL);
 }
 
-void	buffer_realign(char *buf, int size)
+void	buffer_realign(char *buf)
 {
-	char	*tmp;
+		char	*tmp;
+		int		len;
+		int		i;
 
-	tmp = buf;
-	while (size && *tmp != '\n')
-	{
-		size--;
-		tmp++;
-	}
-	if (size == 0)
-		*buf = '\0';
-	else
-		tmp++;
-	while (size)
-	{
-		size--;
-		*buf++ = *tmp++;
-	}
+		tmp = buf;
+		len = 0;
+		i = 0;
+		while (*(tmp + len))
+				len ++;
+		while (*tmp && *tmp != '\n')
+				tmp ++;
+		if (*tmp == '\n')
+				tmp ++;
+		while (tmp != (buf + len))
+				buf[i++] = *tmp++;
+		while (i <= len)
+				buf[i++] = '\0';
 }
 
-char	*copy_till(char *dst, char *src)
+char	*copy_until(char *dst, char *src)
 {
 	while (*src != '\n' && *src != '\0')
 	{

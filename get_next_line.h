@@ -15,13 +15,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-void	buffer_realign(char *str, int size);
+void	buffer_realign(char *str/*, int size*/);
 int		gnl_check(int fd);
 void	*gnl_memcpy(void *dest, const void *src, size_t n);
 char	*get_next_line(int fd);
 size_t	gnl_strlcpy(char *dst, const char *src, size_t size);
 size_t	gnl_strlcat(char *dst, const char *src, size_t size);
-size_t	gnl_strlen(const char *str);
+size_t	gnl_len(const char *str);
 char	*gnl_strchr(const char *s, int c);
 
 #endif

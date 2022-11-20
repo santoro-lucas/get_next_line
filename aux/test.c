@@ -27,7 +27,7 @@ int	main(void)
 		line = NULL;
 		line = get_next_line(test_file);
 		printf("line %i: %s", i++, line);
+		free(line);
 	}
-	free(line);
 	return (0);
 }
