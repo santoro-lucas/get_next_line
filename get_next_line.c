@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/10/21 17:54:41 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:08:17 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	gnl_check(int fd)
 char	*get_next_line(int fd)
 {
 	char		*next_line;
+	char		*last_line;
 	static char	buffer[BUFFER_SIZE + 1];
 	int			line_len;
-	char		*temp_line;
 
 	if (!gnl_check(fd))
 		return (NULL);
@@ -36,16 +36,16 @@ char	*get_next_line(int fd)
 	next_line = NULL;
 	while (!gnl_strchr(next_line, '\n'))
 	{
-		temp_line = next_line;
+		last_line = next_line;
 		if (*buffer == '\0' && read(fd, buffer, BUFFER_SIZE) == 0)
 		{
-			free(temp_line);
+			free(last_line);
 			break ;
 		}
 		line_len += gnl_len(buffer);
-		next_line = malloc(line_len);
-		gnl_strlcpy(next_line, temp_line, line_len);
-		free(temp_line);
+		next_line = gnl_alloc(line_len);
+		gnl_strlcat(next_line, last_line, line_len);
+		free(last_line);
 		gnl_strlcat(next_line, buffer, line_len);
 		buffer_realign(buffer);
 	}
