@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/11/21 22:06:59 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:22:14 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,12 @@ int	gnl_check(int fd)
 		return (1);
 }
 
-// ssize_t	read(int fd, void *buf, size_t count)
-// > reads count bytes from fd pointed file into *buf
-
 char	*get_next_line(int fd)
 {
 	char		*next_line;
 	char		*last_line;
 	static char	buffer[BUFFER_SIZE + 1];
 	int			line_len;
-	//int			byte_count;
 
 	if (!gnl_check(fd))
 		return (NULL);

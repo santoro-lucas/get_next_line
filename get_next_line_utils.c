@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:22:00 by lusantor          #+#    #+#             */
-/*   Updated: 2022/11/21 21:52:24 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:12:20 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	*gnl_alloc(int size)
 	offset = 0;
 	ptr = malloc(size);
 	while (size--)
-	{
 		*(ptr + offset++) = 0;
-	}
 	return (ptr);
 }
 
@@ -92,14 +90,3 @@ void	buffer_realign(char *buf)
 	while (i <= len)
 			buf[i++] = '\0';
 }
-
-//gnl_read(char *buffer)
-//{
-//	if (*buffer == '\0')
-//		byte_count = read(fd, buffer, BUFFER_SIZE);
-//	if (byte_count = 0)
-//	{
-//		free(last_line);
-//		break
-//	}
-//}
