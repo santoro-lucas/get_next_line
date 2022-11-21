@@ -6,11 +6,25 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:22:00 by lusantor          #+#    #+#             */
-/*   Updated: 2022/11/21 21:18:30 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:29:30 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	*gnl_alloc(int size)
+{
+	char	*ptr;
+	int		offset;
+
+	offset = 0;
+	ptr = malloc(size);
+	while (size--)
+	{
+		*(ptr + offset++) = 0;
+	}
+	return (ptr);
+}
 
 size_t	gnl_append(char *dst, const char *src, size_t size)
 {
@@ -56,20 +70,6 @@ char	*gnl_strchr(const char *str, int chr)
 		return ((char *) str);
 	else
 		return (NULL);
-}
-
-void	*gnl_alloc(int size)
-{
-	char	*ptr;
-	int		offset;
-
-	offset = 0;
-	ptr = malloc(size);
-	while (size--)
-	{
-		*(ptr + offset++) = 0;
-	}
-	return (ptr);
 }
 
 void	buffer_realign(char *buf)
