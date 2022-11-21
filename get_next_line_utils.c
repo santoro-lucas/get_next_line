@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:22:00 by lusantor          #+#    #+#             */
-/*   Updated: 2022/11/21 21:12:32 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:18:30 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,3 @@ void	buffer_realign(char *buf)
 	while (i <= len)
 			buf[i++] = '\0';
 }
-
-//void	buffer_realign(char *buf)
-//{
-//	char	*transf
-//
-//	transf = buf;
-//	while (*transf != '\n')
-//		transf++
-//	transf++;
-//	while (*transf != '\0')
-//		*buf = *transf;
-//}
