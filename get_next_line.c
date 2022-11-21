@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:04:20 by lusantor          #+#    #+#             */
-/*   Updated: 2022/11/21 21:08:17 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:12:17 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ char	*get_next_line(int fd)
 		}
 		line_len += gnl_len(buffer);
 		next_line = gnl_alloc(line_len);
-		gnl_strlcat(next_line, last_line, line_len);
+		gnl_append(next_line, last_line, line_len);
 		free(last_line);
-		gnl_strlcat(next_line, buffer, line_len);
+		gnl_append(next_line, buffer, line_len);
 		buffer_realign(buffer);
 	}
 	return (next_line);
