@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:22:00 by lusantor          #+#    #+#             */
-/*   Updated: 2022/11/21 22:12:20 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:58:59 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*gnl_strchr(const char *str, int chr)
 		return (NULL);
 }
 
-void	buffer_realign(char *buf)
+void	gnl_realign(char *buf)
 {
 	char	*tmp;
 	int		len;

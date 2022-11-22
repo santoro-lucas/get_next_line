@@ -6,7 +6,7 @@
 /*   By: lusantor <lusantor@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 15:45:24 by lusantor          #+#    #+#             */
-/*   Updated: 2022/11/21 21:36:01 by lusantor         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:56:54 by lusantor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,12 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-/* ************************************************************************** */
-/* SEÇÃO DE INCLUDES QUE TEM QUE APAGAR                                       */
-/* ************************************************************************** */
-# include <fcntl.h>
-# include <stdio.h>
-/* ************************************************************************** */
-
-void	buffer_realign(char *str);
+char	*get_next_line(int fd);
 void	*gnl_alloc(int size);
 size_t	gnl_append(char *dst, const char *src, size_t size);
 int		gnl_check(int fd);
 size_t	gnl_len(const char *str);
-char	*get_next_line(int fd);
+void	gnl_realign(char *str);
 char	*gnl_strchr(const char *s, int c);
 
 #endif
