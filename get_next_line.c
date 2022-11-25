@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 int	gnl_check(int fd)
 {
@@ -18,6 +19,19 @@ int	gnl_check(int fd)
 		return (0);
 	else
 		return (1);
+}
+
+int	gnl_read(int fd, char *buffer)
+{
+	int	bytes_read;
+
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	if (bytes_read == 0)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
+	return (bytes_read);
 }
 
 char	*get_next_line(int fd)
@@ -29,19 +43,14 @@ char	*get_next_line(int fd)
 
 	if (!gnl_check(fd))
 		return (NULL);
-	line_len = 1;
-	next_line = NULL;
 	if (!buffer)
 		buffer = gnl_alloc(BUFFER_SIZE + 1);
+	line_len = 1;
+	next_line = NULL;
 	while (!gnl_strchr(next_line, '\n'))
 	{
-		if (*buffer == '\0' && read(fd, buffer, BUFFER_SIZE) == 0)
-		{
-			if (buffer)
-				free(buffer);
-			buffer = NULL;
+		if (*buffer == '\0' && gnl_read(fd, buffer) == 0)
 			break ;
-		}
 		previous_line = next_line;
 		line_len += gnl_len(buffer);
 		next_line = gnl_alloc(line_len);
