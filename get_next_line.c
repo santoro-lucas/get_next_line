@@ -24,17 +24,24 @@ char	*get_next_line(int fd)
 {
 	char		*next_line;
 	char		*previous_line;
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	*buffer;
 	int			line_len;
 
 	if (!gnl_check(fd))
 		return (NULL);
 	line_len = 1;
 	next_line = NULL;
+	if (!buffer)
+		buffer = gnl_alloc(BUFFER_SIZE + 1);
 	while (!gnl_strchr(next_line, '\n'))
 	{
 		if (*buffer == '\0' && read(fd, buffer, BUFFER_SIZE) == 0)
+		{
+			if (buffer)
+				free(buffer);
+			buffer = NULL;
 			break ;
+		}
 		previous_line = next_line;
 		line_len += gnl_len(buffer);
 		next_line = gnl_alloc(line_len);
