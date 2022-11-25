@@ -89,7 +89,7 @@ int	main(void)
 
 	i = 1;
 	test_file = open("aux/text2.txt", O_RDONLY);
-	while (i <= 6)
+	while (i <= 11)
 	{
 		line = get_next_line(test_file);
 		printf("line %i: %s", i++, line);
